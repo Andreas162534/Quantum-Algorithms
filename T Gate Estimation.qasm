@@ -1,0 +1,40 @@
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[4];
+creg c[3];
+
+x q[3];
+barrier q[0];
+barrier q[1];
+barrier q[2];
+barrier q[3];
+h q[0];
+h q[1];
+h q[2];
+cp(pi / 4) q[0], q[3];
+cp(pi / 4) q[1], q[3];
+cp(pi / 4) q[1], q[3];
+cp(pi / 4) q[2], q[3];
+cp(pi / 4) q[2], q[3];
+cp(pi / 4) q[2], q[3];
+cp(pi / 4) q[2], q[3];
+barrier q[0];
+barrier q[1];
+barrier q[2];
+barrier q[3];
+swap q[0], q[2];
+h q[0];
+cp(-pi / 2) q[1], q[0];
+h q[1];
+cp(-pi / 2) q[2], q[0];
+cp(-pi / 2) q[2], q[1];
+h q[2];
+barrier q[0];
+barrier q[1];
+barrier q[2];
+barrier q[3];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+measure q[2] -> c[2];
+
+// @columns [0,1,1,1,1,2,2,2,4,5,6,7,8,9,10,11,11,11,11,12,13,14,15,16,17,18,19,19,19,19,20,21,22]
